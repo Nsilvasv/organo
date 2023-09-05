@@ -3,6 +3,7 @@ import CampoForm from "../CampoForm"
 import ListaSuspensa from "../ListaSuspensa"
 import Button from "../Button"
 import { BsFillPersonBadgeFill } from "react-icons/bs"
+import { useState } from "react"
 
 const DivContainer = styled.div`
     display: flex;
@@ -18,16 +19,49 @@ const DivContainer = styled.div`
     }
     
 `
-
 const Form = () => {
+
+    const [nome, setNome] = useState("")
+    const [posicao, setPosicao] = useState("")
+    const [imagem, setImagem] = useState("")
+    const [time, setTime] = useState("")
+
+    const formSubmit =(e) => {
+        e.preventDefault()
+        console.log([nome, posicao,imagem, time]);
+    }
+
+    const times = [
+        'Programação',
+        'Front-End',
+        'Data Science',
+        'Devops',
+        'UX e Design',
+        'Mobile',
+        ' Inovação e Gestão'
+    ]
+
     return(
         <DivContainer>
-            <form>
+            <form onSubmit={formSubmit}>
                 <h2>Preencha os dados para criar card do jogador</h2>
-                <CampoForm label="Nome" required={true} placeholder="Digite seu nome..."/>
-                <CampoForm label="Nome" required={true} placeholder="Digite seu nome..."/>
-                <CampoForm label="Nome" required={true} placeholder="Digite seu nome..."/>
-                <ListaSuspensa label="Times"/>
+                <CampoForm label="Nome" required={true}
+                    valor={nome} 
+                    inputAlterado={valor => setNome(valor)} 
+                    placeholder="Digite seu nome..." />
+
+                <CampoForm label="Posição" required={true} 
+                    valor={posicao} 
+                    inputAlterado={valor => setPosicao(valor)} 
+                    placeholder="Digite sua posição..." />
+                    
+                <CampoForm label="Imagem" required={true} 
+                    valor={imagem} 
+                    inputAlterado={valor =>  setImagem(valor)} 
+                    placeholder="Indique o endereço da imagem..." />
+
+                <ListaSuspensa label="Times" required={true} itens={times} valor={time} listaAlterada={valor => setTime(valor)}/>
+
                 <Button> Crie seu card <BsFillPersonBadgeFill/> </Button>
             </form>
         </DivContainer>

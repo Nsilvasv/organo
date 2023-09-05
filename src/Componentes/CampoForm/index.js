@@ -17,12 +17,15 @@ const Input = styled.input`
     padding: 15px;
     box-sizing: border-box;
 `
-
 const CampoForm = (props) =>{
+
+    const handleChange = (e) =>{
+        props.inputAlterado(e.target.value)
+    }
     return(
         <CampoContainer>
             <Label>{props.label}</Label>
-            <Input required={props.required} placeholder={props.placeholder}/>
+            <Input required={props.required} value={props.valor} onChange={handleChange} placeholder={props.placeholder}/>
         </CampoContainer>
     )
 }

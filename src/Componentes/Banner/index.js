@@ -2,7 +2,7 @@ import ImgBanner from "../../Img/banner.jpg"
 import { styled } from "styled-components"
 
 const HeaderContainer = styled.header `
-    background-color: #6278f7;
+    background-color: #000b4d;
     text-align: center;
 `
 const BannerImg =  styled.img `

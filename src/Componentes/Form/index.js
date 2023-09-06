@@ -1,7 +1,7 @@
-import { styled } from "styled-components"
 import CampoForm from "../CampoForm"
 import ListaSuspensa from "../ListaSuspensa"
 import Button from "../Button"
+import { styled } from "styled-components"
 import { BsFillPersonBadgeFill } from "react-icons/bs"
 import { useState } from "react"
 
@@ -19,7 +19,7 @@ const DivContainer = styled.div`
     }
     
 `
-const Form = () => {
+const Form = (props) => {
 
     const [nome, setNome] = useState("")
     const [posicao, setPosicao] = useState("")
@@ -28,18 +28,14 @@ const Form = () => {
 
     const formSubmit =(e) => {
         e.preventDefault()
-        console.log([nome, posicao,imagem, time]);
+        props.jogadorCadastrado({
+            nome, posicao, imagem, time
+        })
+        setNome('')
+        setPosicao('')
+        setImagem('')
+        setTime('')
     }
-
-    const times = [
-        'Programação',
-        'Front-End',
-        'Data Science',
-        'Devops',
-        'UX e Design',
-        'Mobile',
-        ' Inovação e Gestão'
-    ]
 
     return(
         <DivContainer>
@@ -58,9 +54,12 @@ const Form = () => {
                 <CampoForm label="Imagem" required={true} 
                     valor={imagem} 
                     inputAlterado={valor =>  setImagem(valor)} 
-                    placeholder="Indique o endereço da imagem..." />
+                    placeholder="Indique o endereço da imagem do GitHub..." />
 
-                <ListaSuspensa label="Times" required={true} itens={times} valor={time} listaAlterada={valor => setTime(valor)}/>
+                <ListaSuspensa label="Times" required={true} 
+                    itens={props.nomeTimes} 
+                    valor={time} 
+                    listaAlterada={valor => setTime(valor)} />
 
                 <Button> Crie seu card <BsFillPersonBadgeFill/> </Button>
             </form>

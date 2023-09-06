@@ -21,7 +21,8 @@ const ListaSuspensa = (props) => {
     return(
         <ListaContainer>
             <label>{props.label}</label>
-            <select required={props.required} valor={props.valor} onChange={e => props.listaAlterada(e.target.value)}>
+            <select required={props.required} value={props.valor} onChange={e => props.listaAlterada(e.target.value)}>
+                <option value=''></option>
                 {props.itens.map(item => {
                     return <option key={item}>{item}</option>
                 })}
